@@ -6,14 +6,10 @@
 #include "PostPDO.h"
 
 int main() {
-    // Spécifiez le nom du fichier pour stocker les données
     std::string filename = "posts.txt";
     PostPDO postRepository(filename);
 
-    // Créez une instance de PostManager
     PostManager postManager(postRepository);
-
-    // Demandez les détails du post à l'utilisateur
     std::string title;
     double unit_price;
     double wholesale_price;
@@ -33,13 +29,10 @@ int main() {
     std::cin >> category_id;
 
     std::cout << "Description: ";
-    std::cin.ignore(); // Ignore newline character left in the stream after previous input
+    std::cin.ignore(); 
     std::getline(std::cin, description);
-
-    // Créez un nouveau PostEntity
     std::unique_ptr<PostEntity> newPost = std::make_unique<PostEntity>(title, unit_price, wholesale_price, category_id, description);
 
-    // Exécutez la méthode pour sauvegarder le post
     std::vector<PostEntity> data = { *newPost };
     postManager.execute(data);
 

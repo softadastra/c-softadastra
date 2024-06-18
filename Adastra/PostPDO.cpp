@@ -1,6 +1,5 @@
 #include "PostPDO.h"
 
-// Utilisation d'un compteur statique pour générer des identifiants uniques
 static int nextId = 1;
 
 PostPDO::PostPDO(const std::string& filename)
@@ -19,7 +18,6 @@ std::vector<PostEntity> PostPDO::findAll()
 
 void PostPDO::save(std::unique_ptr<PostEntity> post)
 {
-    // Affectez un nouvel identifiant unique à l'objet PostEntity avant de l'enregistrer
     post->setId(nextId++);
     writeToFile(*post);
 }
